@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> This is the instructor make page</h1>
+
+    <form>
+        <label for="name"> </label>
+        <input name="name" id="name" type="text">
+
+        <label for="userName"> </label>
+        <input name="userName" id="userName" type="text" >
+
+        <label for="collage"> </label>
+        <select  name="collage" id="collage" >
+            
+            <option value="Collage of physics"> Collage of physics </option>
+            <option value="Collage of Science"> Collage of Science </option>
+            <option vaalue="Collage of Business"> Collage of Business </option>
+            <option value="Collage of Information System"> Collage of Information System </option>
+            <option value="Collage of  Literatur"> Collage of Literatur </option>
+        </select>
+
+        <label for="Student"> Student: </label>
+        <select multiple name="Student" id="Student"> 
+            <% allStudent.forEach( (obj)=> { %>
+            <option value="<%= obj.id %>"> <%= obj.name %></option>
+                <% }) %>
+        </select>
+
+       
+        <input name="user" id="user" type="text" hidden >
+
+
+        <label for="course"> Choose your courses: </label>
+        <select multiple name="course" id="course"> 
+            <% allCourses.forEach( (obj)=> { %>
+            <option value="<%= obj.id %>"> <%= obj.name %></option>
+                <% }) %>
+        </select>
+
+
+    </form>
+</body>
+</html>
+
+
+<!-- 
+
+const {model , Schema} = require("mongoose");
+
+
+const InstructorSchema = new Schema({
+    
+    name: {
+        type: String,
+        requird: [true , "Please give me your name"]
+    },
+    userName:{
+        type: String,
+        required: [true , "Please give a username"]
+    },
+     collage: {
+         type: Schema.Types.ObjectId ,
+        ref:"Collage"
+     },
+     Student: {
+        type: Schema.Types.ObjectId ,
+        ref:"Student"
+     },
+     user : {
+        type: Schema.Types.ObjectId ,
+        ref:"User"
+     },
+     course:{
+        type: Schema.Types.ObjectId ,
+        ref:"Course"
+     }
+
+});
+
+
+const Instructor = model("Instructor" , InstructorSchema);
+
+module.exports = Instructor;
+
+
+
+-->

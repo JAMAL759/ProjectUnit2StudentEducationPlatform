@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> This is the Collage make page</h1>
+
+    <form action = "/collage" method="post">
+        <label for="name"> name  </label>
+        <input name="name" id="name" type="text">
+
+        <label for="Student">  Students </label>
+        
+        <select   name="Student" id="Student" >
+            
+            <% allStudent.forEach( (obj)=> { %>
+                <option value="<%= obj.id %>"> <%= obj.name %></option>
+                    <% }) %>
+        </select>
+
+
+        <label for="Instructor"> doctor: </label>
+        <select multiple name="Instructor" id="Instructor"> 
+            <% allInstructor.forEach( (obj)=> { %>
+            <option value="<%= obj.id %>"> <%= obj.name %></option>
+                <% }) %>
+        </select>
+
+
+        <label for="course"> Choose your courses: </label>
+        <select multiple name="course" id="course"> 
+            <% allCourses.forEach( (obj)=> { %>
+            <option value="<%= obj.id %>"> <%= obj.name %></option>
+                <% }) %>
+        </select>
+
+        <button> Submit</button>
+    </form>
+</body>
+</html>
+

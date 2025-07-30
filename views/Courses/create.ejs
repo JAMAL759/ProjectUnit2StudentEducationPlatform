@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <form action="/course" method="post">
+        <label for="name"> name  </label>
+        <input name="name" id="name" type="text">
+
+        <label for="CourseCode"> course Code </label>
+        <input name="CourseCode" id="CourseCode" type="text" >
+
+        <label for="collage"> choose your collage </label>
+        <select   name="collage" id="collage" >
+            <option value= "null"> </option>
+            <% allCollages.forEach( (obj)=> { %>
+
+                <option value="<%= obj.id %>"> <%= obj.name %></option>
+              
+              
+                    <% }) %>
+        </select>
+
+        <label for="Instructor"> choose the instructor: </label>
+        <select multiple name="Instructor" id="Instructor"> 
+            <% allStudent.forEach( (obj)=> { %>
+            <option value="<%= obj.id %>"> <%= obj.name %></option>
+                <% }) %>
+        </select>
+
+       
+        <input name="user" id="user" type="text" hidden >
+
+
+        <label for="Student"> Choose your Students: </label>
+        <select multiple name="course" id="course"> 
+            <% allStudent.forEach( (obj)=> { %>
+                <% if (obj.collage == returnedValue)%>
+            <option value="<%= obj.id %>"> <%= obj.name %></option>
+                <% }) %>
+        </select>
+
+        <button> Submit</button>
+    </form>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+
+
+    <script>
+        console.log("I'm right here ")
+        const optionCollege = document.querySelector("#collage")
+        optionCollege.addEventListener("change",async(event)=>{
+            console.log("I'm righer here")
+
+
+            try{
+                const returnedValue = await axios.get("http://localhost:3000/courses/find/" + event.target.value)
+            console.log("this is the returnedValue = ", returnedValue)
+         console.log(returnedValue.data)
+            }catch(error) {
+                console.log("Their is an error in ajax " , error)
+            }
+           
+        })
+
+
+        const StudentSelect = document.querySelector("#course")
+
+
+    </script>
+
+</body>
+</html>
+
+
+
+<!-- 
+
+const {model , Schema} = require("mongoose");
+
+
+const CoursesSchema = new Schema({
+    
+    name: {
+        type: String,
+        requird: [true , "Please give me your name"]
+    },
+    CourseCode:{
+        type: String,
+        required: [true , "Please give a username"]
+    },
+     collage: {
+         type: Schema.Types.ObjectId ,
+        ref:"Collage"
+     },
+     Instructor: {
+        type: Schema.Types.ObjectId ,
+        ref:"Instructor"
+     },
+     Student: {
+      type: Schema.Types.ObjectId ,
+      ref:"Student"
+   }
+
+});
+
+
+const Course = model("Course" , CoursesSchema);
+
+module.exports = Course;
+
+
+
+
+-->

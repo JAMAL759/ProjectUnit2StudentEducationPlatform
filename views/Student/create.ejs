@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> This is the Student make page</h1>
+
+    <form>
+        <label for="name"> </label>
+        <input name="name" id="name" type="text">
+
+        <label for="userName"> </label>
+        <input name="userName" id="userName" type="text" >
+
+        <label for="collage"> </label>
+        <select   name="collage" id="collage" >
+            
+            <% allCollages.forEach( (obj)=> { %>
+
+                <option value="<%= obj.id %>"> <%= obj.name %></option>
+                <% option.onclick( () => { let current = obj.name } )%>
+                <% console.log("this is the current = " , current) %>
+                    <% }) %>
+        </select>
+
+        <label for="doctor"> doctor: </label>
+        <select multiple name="doctor" id="doctor"> 
+            <% allInstructor.forEach( (obj)=> { %>
+            <option value="<%= obj.id %>"> <%= obj.name %></option>
+                <% }) %>
+        </select>
+
+       
+        <input name="user" id="user" type="text" hidden >
+
+
+        <label for="course"> Choose your courses: </label>
+        <select multiple name="course" id="course"> 
+            <% allCourses.forEach( (obj)=> { %>
+            <option value="<%= obj.id %>"> <%= obj.name %></option>
+                <% }) %>
+        </select>
+
+
+    </form>
+</body>
+</html>
+
