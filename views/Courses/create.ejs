@@ -16,7 +16,7 @@
         <input name="CourseCode" id="CourseCode" type="text" >
 
         <label for="collage"> choose your collage </label>
-        <select   name="collage" id="collage" >
+        <select  multiple="multiple"  name="collage" id="collage" >
             <option value= "null"> </option>
             <% allCollages.forEach( (obj)=> { %>
 
@@ -27,10 +27,8 @@
         </select>
 
         <label for="Instructor"> choose the instructor: </label>
-        <select multiple name="Instructor" id="Instructor"> 
-            <% allStudent.forEach( (obj)=> { %>
-            <option value="<%= obj.id %>"> <%= obj.name %></option>
-                <% }) %>
+        <select  multiple="multiple" name="Instructor" id="Instructor"> 
+         
         </select>
 
        
@@ -38,11 +36,8 @@
 
 
         <label for="Student"> Choose your Students: </label>
-        <select multiple name="course" id="course"> 
-            <% allStudent.forEach( (obj)=> { %>
-                <% if (obj.collage == returnedValue)%>
-            <option value="<%= obj.id %>"> <%= obj.name %></option>
-                <% }) %>
+        <select  multiple="multiple" name="Student" id="Student"> 
+       
         </select>
 
         <button> Submit</button>
@@ -53,14 +48,98 @@
     <script>
         console.log("I'm right here ")
         const optionCollege = document.querySelector("#collage")
+        const optionInstructor = document.querySelector("#Instructor")
+        const optionStudent = document.querySelector("#Student")
+        let InstructorArray = []
+        let isAppear = false
+
         optionCollege.addEventListener("change",async(event)=>{
-            console.log("I'm righer here")
+
+            try{
+            optionInstructor.childNodes.forEach((event)=>{
+                
+                optionInstructor.removeChild(event);
+            })
+        } catch(error) {
+            console.log("Their is an error in removing " , error)
+        }
+
+
+        try{
+            optionStudent.childNodes.forEach((event)=>{
+                    console.log(event)
+                optionStudent.removeChild(event);
+            })
+        } catch(error) {
+            console.log("Their is an error in removing " , error)
+        }
 
 
             try{
-                const returnedValue = await axios.get("http://localhost:3000/courses/find/" + event.target.value)
+                const returnedValue = await axios.get("/course/find/college/" + event.target.value)
+                const returnedValue2 = await axios.get("/course/find/Instructor/" + event.target.value)
+                const returnedValue3 =  await axios.get("/course/find/Student/" + event.target.value)
             console.log("this is the returnedValue = ", returnedValue)
+            console.log("this is the returnedValue2 = ", returnedValue2)
          console.log(returnedValue.data)
+                
+                // returnedValue.data.forEach(element => {
+                //     // const obj =  document.createElement("option");
+                //     //      obj.value = element.Instructor
+                //          InstructorArray.push(element.Instructor)
+                         
+                         
+                //         //  obj.textContent = element.Instructor
+                //         //  optionInstructor.appendChild(obj)
+                //   //  console.log(   optionInstructor.appendChild(obj).textContent="dd")
+                //     console.log(InstructorArray)
+                // });
+
+
+                
+
+                returnedValue2.data.forEach((obj) => {
+                 //   if(isAppear == true ){
+                      const Instructorr =  document.createElement("option");
+                      Instructorr.value = obj._id
+                      Instructorr.textContent = obj.name
+                           optionInstructor.appendChild(Instructorr)
+                        
+                        console.log("This is the isAppear in the false condition = ", isAppear)
+                    //}
+
+                        //    if(isAppear == false ) {
+                        //     console.log("I'm here in the else condition")
+                        //    console.log("this is it" , optionInstructor.removeChild());
+                          
+                        //    }
+                 
+                })
+
+
+                returnedValue3.data.forEach((obj) => {
+                 //   if(isAppear == true ){
+                      const Instructorr =  document.createElement("option");
+                      Instructorr.value = obj._id
+                      Instructorr.textContent = obj.name
+                           optionStudent.appendChild(Instructorr)
+                        
+                       // console.log("This is the isAppear in the false condition = ", isAppear)
+                    //}
+
+                        //    if(isAppear == false ) {
+                        //     console.log("I'm here in the else condition")
+                        //    console.log("this is it" , optionInstructor.removeChild());
+                          
+                        //    }
+                 
+                })
+
+
+                
+           
+          //    isAppear = !isAppear
+                console.log(" This is the is appear  = " , isAppear);
             }catch(error) {
                 console.log("Their is an error in ajax " , error)
             }

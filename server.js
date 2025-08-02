@@ -9,6 +9,7 @@ const studentDatabase = require("./route/student_route");
 const instructorDatabase = require("./route/instructor_route");
 const coursesDatabase = require("./route/courses_route");
 const collageDatabase = require("./route/Collage_route");
+const cors = require("cors");
 const session = require("express-session");
 
 
@@ -33,6 +34,7 @@ app.use(
   app.use("/instructor" , instructorDatabase)
   app.use("/course" , coursesDatabase)
   app.use("/collage" , collageDatabase);
+  app.use(cors())
 
 const port = process.env.PORT || 3000
 

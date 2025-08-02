@@ -11,10 +11,10 @@ const InstructorSchema = new Schema({
         type: String,
         required: [true , "Please give a username"]
     },
-     collage: {
+     collage: [{
          type: Schema.Types.ObjectId ,
         ref:"Collage"
-     },
+     }],
      Instructor: {
         type: Schema.Types.ObjectId ,
         ref:"Instructor"
@@ -23,10 +23,10 @@ const InstructorSchema = new Schema({
         type: Schema.Types.ObjectId ,
         ref:"User"
      },
-     course:{
+     course:[{
         type: Schema.Types.ObjectId ,
         ref:"Course"
-     }
+     }]
 
 });
 

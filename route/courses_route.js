@@ -1,4 +1,4 @@
-const express = require("express").Router();
+const router = require("express").Router();
 const  Student = require("../model/Student");
 const Instructor = require("../model/Instructor");
 const course = require("../model/Courses")
@@ -6,7 +6,7 @@ const collage = require("../model/Collage");
 
 
 
-express.get("/" , async(req ,res) => {
+router.get("/" , async(req ,res) => {
 
     const allInstructor = await Instructor.find();
     const allStudent = await Student.find();
@@ -15,7 +15,7 @@ express.get("/" , async(req ,res) => {
 
 });
 
-express.post("/" , async (req ,res) => {
+router.post("/" , async (req ,res) => {
     console.log("This is the req.params " , req.params.id)
     console.log("This is the req.body in Student " , req.body)
 
@@ -28,10 +28,102 @@ try{
 })
 
 
-express.get("/courses/find/:couirse" ,(req , res) =>{
-console.log("This is runinng")
-        const Elementm =  course.find(req.params.couirse)
-        res.json(Elementm);
+// this route returs all the courses that have the college id in the params
+router.get("/find/college/:collageId" ,async (req , res) =>{
+
+    try{
+        console.log("course route jamal ",req.params.course)
+        const Elementm =  await course.find({collage:req.params.collageId})
+        // const ElementInstructor  = await Instructor.find({collage: req.params.collageId});
+       
+        // console.log(ElementInstructor)
+
+        console.log(Elementm)
+        res.send( Elementm)
+    
+    }
+    catch(error){
+        console.log(error)
+    }
+
+
 })
 
-module.exports = express;
+
+router.get("/find/Instructor/:collageId" ,async (req , res) =>{
+
+    try{
+        console.log("course route jamal ",req.params.course)
+ 
+        const ElementInstructor  = await Instructor.find({collage: req.params.collageId});
+       
+        console.log(ElementInstructor)
+
+
+        res.send( ElementInstructor)
+    
+    }
+    catch(error){
+        console.log(error)
+    }
+
+
+})
+
+
+router.get("/find/Student/:collageId" ,async (req , res) =>{
+
+    try{
+        console.log("course route jamal ",req.params.course)
+ 
+        const ElementStudent  = await Student.find({collage: req.params.collageId});
+       
+        console.log(ElementStudent)
+
+
+        res.send( ElementStudent)
+    
+    }
+    catch(error){
+        console.log(error)
+    }
+
+
+})
+
+
+// all the instructors for a courseId that is provided
+router.get("/find/course/:courseId" ,async (req , res) =>{
+
+    try{
+        console.log("course route jamal ",req.params.courseId)
+        const Elementm =  await Instructor.find({couraw:req.params.courseId})
+        console.log(Elementm)
+        res.send( Elementm)
+    
+    }
+    catch(error){
+        console.log(error)
+    }
+
+
+})
+
+
+router.get("/find/:course" ,async (req , res) =>{
+
+    try{
+        console.log("course route jamal ",req.params.course)
+        const Elementm =  await course.findById(req.params.course)
+        console.log(Elementm)
+        res.send( Elementm)
+    
+    }
+    catch(error){
+        console.log(error)
+    }
+
+
+})
+
+module.exports = router;

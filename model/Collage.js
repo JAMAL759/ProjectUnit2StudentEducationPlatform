@@ -9,18 +9,18 @@ const CollageScheme = new Schema({
         requird: [true , "Please give me your name"]
     },
 
-     Student: {
+     Student: [{
         type: Schema.Types.ObjectId ,
         ref:"Student"
-     },
-     Instructor: {
+     }],
+     Instructor: [{
         type: Schema.Types.ObjectId ,
         ref:"Instructor"
-     },
-     course:{
+     }],
+     course:[{
         type: Schema.Types.ObjectId ,
         ref:"Course"
-     }
+     }]
 
 });
 

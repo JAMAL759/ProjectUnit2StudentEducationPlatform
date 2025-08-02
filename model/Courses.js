@@ -15,14 +15,14 @@ const CoursesSchema = new Schema({
          type: Schema.Types.ObjectId ,
         ref:"Collage"
      },
-     Instructor: {
+     Instructor: [{
         type: Schema.Types.ObjectId ,
         ref:"Instructor"
-     },
-     Student: {
+     }],
+     Student: [{
       type: Schema.Types.ObjectId ,
       ref:"Student"
-   }
+   }]
 
 });
 

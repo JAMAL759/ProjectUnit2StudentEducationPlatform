@@ -8,44 +8,128 @@
 <body>
     <h1> This is the Student make page</h1>
 
-    <form>
-        <label for="name"> </label>
+    <form action="/student" method="post">
+        <label for="name"> Name: </label>
         <input name="name" id="name" type="text">
 
-        <label for="userName"> </label>
+        <label for="userName"> userName: </label>
         <input name="userName" id="userName" type="text" >
 
         <label for="collage"> </label>
         <select   name="collage" id="collage" >
-            
+            <option value="null"></option>
             <% allCollages.forEach( (obj)=> { %>
 
                 <option value="<%= obj.id %>"> <%= obj.name %></option>
-                <% option.onclick( () => { let current = obj.name } )%>
-                <% console.log("this is the current = " , current) %>
+           
                     <% }) %>
         </select>
 
         <label for="doctor"> doctor: </label>
         <select multiple name="doctor" id="doctor"> 
-            <% allInstructor.forEach( (obj)=> { %>
-            <option value="<%= obj.id %>"> <%= obj.name %></option>
-                <% }) %>
+           
         </select>
 
        
-        <input name="user" id="user" type="text" hidden >
-
+        <% allUsers.forEach( (obj) => { if (id == obj.username) { %>
+        <input name="user" id="user" type="text" value= <%= obj.id %> hidden >
+            <% } }) %>
 
         <label for="course"> Choose your courses: </label>
-        <select multiple name="course" id="course"> 
-            <% allCourses.forEach( (obj)=> { %>
-            <option value="<%= obj.id %>"> <%= obj.name %></option>
-                <% }) %>
+        <select name="course" id="course" multiple> 
+            
         </select>
 
+        <button> Submit</button>
 
     </form>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script>
+        console.log("I'm right here ")
+        const optionCollege = document.querySelector("#collage")
+        const optionInstructor = document.querySelector("#doctor")
+        const optionCourse = document.querySelector("#course")
+        let InstructorArray = []
+        let isAppear = false
+
+        optionCollege.addEventListener("change",async(event)=>{
+
+            try{
+            optionInstructor.childNodes.forEach((event)=>{
+                
+                optionInstructor.removeChild(event);
+            })
+        } catch(error) {
+            console.log("Their is an error in removing " , error)
+        }
+
+
+        try{
+            optionCourse.childNodes.forEach((event)=>{
+                    console.log(event)
+                    optionCourse.removeChild(event);
+            })
+        } catch(error) {
+            console.log("Their is an error in removing " , error)
+        }
+
+
+            try{
+                const returnedValue = await axios.get("/student/find/college/" + event.target.value)
+                const returnedValue2 = await axios.get("/student/find/Instructor/" + event.target.value)
+                const returnedValue3 =  await axios.get("/student/find/Student/" + event.target.value)
+            console.log("this is the returnedValue = ", returnedValue)
+            console.log("this is the returnedValue2 = ", returnedValue2)
+         console.log(returnedValue.data)
+                
+        
+
+
+                
+
+                returnedValue2.data.forEach((obj) => {
+                 //   if(isAppear == true ){
+                      const Instructorr =  document.createElement("option");
+                      Instructorr.value = obj._id
+                      Instructorr.textContent = obj.name
+                           optionInstructor.appendChild(Instructorr)
+                        
+                        console.log("This is the isAppear in the false condition = ", isAppear)
+             
+                 
+                })
+
+
+                returnedValue.data.forEach((obj) => {
+                 //   if(isAppear == true ){
+                      const Instructorr =  document.createElement("option");
+                      Instructorr.value = obj._id
+                      Instructorr.textContent = obj.name
+                           optionCourse.appendChild(Instructorr)
+           
+                 
+                })
+
+
+                
+           
+          //    isAppear = !isAppear
+                console.log(" This is the is appear  = " , isAppear);
+            }catch(error) {
+                console.log("Their is an error in ajax " , error)
+            }
+           
+        })
+
+
+        const StudentSelect = document.querySelector("#course")
+
+
+    </script>
+
+
+
 </body>
 </html>
 

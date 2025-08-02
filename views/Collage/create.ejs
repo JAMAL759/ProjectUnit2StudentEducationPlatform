@@ -14,8 +14,8 @@
 
         <label for="Student">  Students </label>
         
-        <select   name="Student" id="Student" >
-            
+        <select    name="Student" id="Student"  multiple >
+            <option value= "null"> </option>
             <% allStudent.forEach( (obj)=> { %>
                 <option value="<%= obj.id %>"> <%= obj.name %></option>
                     <% }) %>
@@ -23,7 +23,7 @@
 
 
         <label for="Instructor"> doctor: </label>
-        <select multiple name="Instructor" id="Instructor"> 
+        <select multiple="multiple" name="Instructor" id="Instructor"> 
             <% allInstructor.forEach( (obj)=> { %>
             <option value="<%= obj.id %>"> <%= obj.name %></option>
                 <% }) %>
@@ -31,7 +31,8 @@
 
 
         <label for="course"> Choose your courses: </label>
-        <select multiple name="course" id="course"> 
+        <select  multiple="multiple" name="course" id="course"> 
+            <option value= "null"> </option>
             <% allCourses.forEach( (obj)=> { %>
             <option value="<%= obj.id %>"> <%= obj.name %></option>
                 <% }) %>
