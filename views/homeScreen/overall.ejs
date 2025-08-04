@@ -239,7 +239,7 @@ border-radius: 7px;
 
         <ul> 
 
-                <li> <a href="/student"> Student  </a></li>
+                <li> <a href="#"> Student  </a></li>
 
                 <li> <a href="#"> Instructors </a></li>
 
@@ -248,7 +248,6 @@ border-radius: 7px;
                 <li> <a href="#"> Login </a></li>
 
                 <li> <a href="#"> SignUp </a></li>
-                <li> <a href="/student/Profile"> <%= user.username%></a></li>
   
         </ul>
 
@@ -331,13 +330,12 @@ border-radius: 7px;
     <script>
         console.log("I'm right here ")
         const optionCollege = document.querySelector("#collage")
-        const optionInstructor = document.querySelector("#cover")
+        const optionInstructor = document.querySelector("#centerGrid")
         const optionCover = document.querySelector("#cover");
         const optionStudent = document.querySelector("#Student")
         let InstructorArray = []
         let CoursesArray = []
         let isAppear = false
-        optionInstructor.style.flexWrap = "wrap"
 
         optionCollege.addEventListener("click",async(event)=>{
 
@@ -345,10 +343,9 @@ border-radius: 7px;
 
             try{
            
-               const longRectangle =  document.getElementById("#buttonSection")
-               const Card =  document.getElementById("#centerGridCard")
+               const longRectangle =  document.querySelectorAll("#buttonSection")
+               const Card =  document.querySelectorAll("#centerGridCard")
                longRectangle.removeChild();
-               Card.removeChild();
 
 
         } catch(error) {
