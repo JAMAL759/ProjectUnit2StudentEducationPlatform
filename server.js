@@ -37,7 +37,7 @@ app.use(
   app.use("/" , Home);
 
   app.use("/signUp" , userDatabase )
-  app.use(isSignedIn)
+  
   app.use("/student" , studentDatabase )
   app.use("/instructor" , instructorDatabase)
   app.use("/course" , coursesDatabase)

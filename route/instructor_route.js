@@ -14,7 +14,7 @@ express.get("/:id" , async(req ,res) => {
 
 });
 
-express.post("/:idzz" , async (req ,res) => {
+express.post("/:idzzz" , async (req ,res) => {
     console.log("This is the req.params " , req.params.id)
     console.log("This is the req.body in Student " , req.body)
 
@@ -46,6 +46,53 @@ try{
 }catch(error){console.log("Their is an error posting Instructor " , error)};
 
 })
+
+
+
+express.get("/find/collage/:collageId" ,async (req , res) =>{
+
+    try{
+      //  console.log("course route jamal ",req.params.course)
+ 
+        const ElementInstructor  = await Instructor.find({collage: req.params.collageId});
+       
+        console.log(ElementInstructor)
+
+
+        res.send( ElementInstructor)
+    
+    }
+    catch(error){
+        console.log(error)
+    }
+
+
+})
+
+
+
+
+express.get("/find/Instructor/:collageId" ,async (req , res) =>{
+
+    try{
+      //  console.log("course route jamal ",req.params.course)
+ 
+        const ElementInstructor  = await Student.find({collage: req.params.collageId});
+       
+        console.log(ElementInstructor)
+
+
+        res.send( ElementInstructor)
+    
+    }
+    catch(error){
+        console.log(error)
+    }
+
+
+})
+
+
 
 module.exports = express;
 

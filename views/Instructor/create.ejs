@@ -79,12 +79,14 @@
 
 
             try{
-                const returnedValue = await axios.get("/instructor/find/college/" + event.target.value)
-                const returnedValue2 = await axios.get("/instructor/find/Instructor/" + event.target.value)
-                const returnedValue3 =  await axios.get("/instructor/find/Student/" + event.target.value)
+                const returnedValue = await axios.get("/instructor/find/collage/" + event.target.value)
+               // const returnedValue2 = await axios.get("/instructor/find/Instructor/" + event.target.value)
+                const returnedValue3 =  await axios.get("/instructor/find/Instructor/" + event.target.value)
             console.log("this is the returnedValue = ", returnedValue)
-            console.log("this is the returnedValue2 = ", returnedValue2)
+          //  console.log("this is the returnedValue2 = ", returnedValue2)
          console.log(returnedValue.data)
+
+         console.log(returnedValue3)
                 
         
 
