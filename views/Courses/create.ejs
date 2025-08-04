@@ -42,6 +42,7 @@
 
         <button> Submit</button>
     </form>
+    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 
 
@@ -83,17 +84,7 @@
             console.log("this is the returnedValue2 = ", returnedValue2)
          console.log(returnedValue.data)
                 
-                // returnedValue.data.forEach(element => {
-                //     // const obj =  document.createElement("option");
-                //     //      obj.value = element.Instructor
-                //          InstructorArray.push(element.Instructor)
-                         
-                         
-                //         //  obj.textContent = element.Instructor
-                //         //  optionInstructor.appendChild(obj)
-                //   //  console.log(   optionInstructor.appendChild(obj).textContent="dd")
-                //     console.log(InstructorArray)
-                // });
+        
 
 
                 
@@ -106,13 +97,7 @@
                            optionInstructor.appendChild(Instructorr)
                         
                         console.log("This is the isAppear in the false condition = ", isAppear)
-                    //}
-
-                        //    if(isAppear == false ) {
-                        //     console.log("I'm here in the else condition")
-                        //    console.log("this is it" , optionInstructor.removeChild());
-                          
-                        //    }
+             
                  
                 })
 
@@ -123,15 +108,7 @@
                       Instructorr.value = obj._id
                       Instructorr.textContent = obj.name
                            optionStudent.appendChild(Instructorr)
-                        
-                       // console.log("This is the isAppear in the false condition = ", isAppear)
-                    //}
-
-                        //    if(isAppear == false ) {
-                        //     console.log("I'm here in the else condition")
-                        //    console.log("this is it" , optionInstructor.removeChild());
-                          
-                        //    }
+           
                  
                 })
 
@@ -154,45 +131,3 @@
 
 </body>
 </html>
-
-
-
-<!-- 
-
-const {model , Schema} = require("mongoose");
-
-
-const CoursesSchema = new Schema({
-    
-    name: {
-        type: String,
-        requird: [true , "Please give me your name"]
-    },
-    CourseCode:{
-        type: String,
-        required: [true , "Please give a username"]
-    },
-     collage: {
-         type: Schema.Types.ObjectId ,
-        ref:"Collage"
-     },
-     Instructor: {
-        type: Schema.Types.ObjectId ,
-        ref:"Instructor"
-     },
-     Student: {
-      type: Schema.Types.ObjectId ,
-      ref:"Student"
-   }
-
-});
-
-
-const Course = model("Course" , CoursesSchema);
-
-module.exports = Course;
-
-
-
-
--->
