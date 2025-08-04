@@ -23,7 +23,7 @@ express.post("/" , async (req ,res) => {
 try{
  
     await collage.create(req.body);
-    console.log("Sucessfully posted in Collages")
+    console.log("Sucessfully posted in Courses")
 }catch(error){console.log("Their is an error posting Courses " , error)};
 
 })
