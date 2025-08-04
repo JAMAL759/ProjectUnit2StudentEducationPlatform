@@ -14,10 +14,11 @@ express.get("/:id" , async(req ,res) => {
 
 });
 
-express.post("/:id" , async (req ,res) => {
+express.post("/:idzz" , async (req ,res) => {
     console.log("This is the req.params " , req.params.id)
     console.log("This is the req.body in Student " , req.body)
 
+        const{name , userName , collage  , Student , user , course  } = req.body
 try{
     req.body.user = req.params.id
  
@@ -27,7 +28,7 @@ try{
     try{
         await collagee.findByIdAndUpdate(collage,{ 
             
-              $push: {   Student: InstructorId }
+              $push: {   Instructor: InstructorId }
         })
         }
         catch(error) {
@@ -36,8 +37,8 @@ try{
      
      
         try{
-        await coursee.findByIdAndUpdate(cours,{ 
-         $push: {   Student: StudentID }
+        await coursee.findByIdAndUpdate(course,{ 
+         $push: {   Instructor: InstructorId }
      })} catch(error){console.log("Their is an error updating courses ," , error)}
      
 
@@ -50,6 +51,32 @@ module.exports = express;
 
 
 /*
+
+  
+    name: {
+        type: String,
+        requird: [true , "Please give me your name"]
+    },
+    userName:{
+        type: String,
+        required: [true , "Please give a username"]
+    },
+     collage: [{
+         type: Schema.Types.ObjectId ,
+        ref:"Collage"
+     }],
+     Student: [{
+        type: Schema.Types.ObjectId ,
+        ref:"Student"
+     }],
+     user : {
+        type: Schema.Types.ObjectId ,
+        ref:"User"
+     },
+     course:[{
+        type: Schema.Types.ObjectId ,
+        ref:"Course"
+     }]
 
 
 const CollageScheme = new Schema({

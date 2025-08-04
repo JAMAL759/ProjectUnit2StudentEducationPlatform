@@ -136,27 +136,14 @@ router.get("/Profile/:id" , async(req, res) => {
 
         try{ 
 
-            const deletion = await Student.findByIdAndDelete(req.params.id)
+            const deletion = await Student.findByIdAndDelete(req.par)
             
         }catch(error){console.log("Their is an error in deleting , " ,error)}
 
 })
 
 
-// router.get("/Profile/update/:id" , async(req, res) => {
-
-//     try{ 
-    
-//         const deletion = await Student.findByIdAndUpdate(req.params.id , {
-                
-//         })
-        
-//     }catch(error){console.log("Their is an error in deleting , " ,error)}
-
-// })
-
-
-router.get("/:id" ,isSignedIn, async(req ,res) => { 
+router.get("/:id" ,isSignedIn, async(req ,res) => {
 
     const allInstructor = await Instructor.find();
     const allCourses = await coursee.find();
