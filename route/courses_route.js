@@ -32,7 +32,7 @@ try{
 router.get("/find/college/:collageId" ,async (req , res) =>{
 
     try{
-        console.log("course route jamal ",req.params.course)
+      //  console.log("course route jamal ",req.params.course)
         const Elementm =  await course.find({collage:req.params.collageId})
         // const ElementInstructor  = await Instructor.find({collage: req.params.collageId});
        
@@ -50,10 +50,32 @@ router.get("/find/college/:collageId" ,async (req , res) =>{
 })
 
 
-router.get("/find/Instructor/:collageId" ,async (req , res) =>{
+router.get("/find/collegee/" ,async (req , res) =>{
 
     try{
         console.log("course route jamal ",req.params.course)
+        const Elementm =  await collage.find()
+        // const ElementInstructor  = await Instructor.find({collage: req.params.collageId});
+       
+        // console.log(ElementInstructor)
+
+        console.log(Elementm)
+        res.send( Elementm)
+    
+    }
+    catch(error){
+        console.log(error)
+    }
+
+
+})
+
+
+
+router.get("/find/Instructor/:collageId" ,async (req , res) =>{
+
+    try{
+      //  console.log("course route jamal ",req.params.course)
  
         const ElementInstructor  = await Instructor.find({collage: req.params.collageId});
        
@@ -74,7 +96,7 @@ router.get("/find/Instructor/:collageId" ,async (req , res) =>{
 router.get("/find/Student/:collageId" ,async (req , res) =>{
 
     try{
-        console.log("course route jamal ",req.params.course)
+      //  console.log("course route jamal ",req.params.course)
  
         const ElementStudent  = await Student.find({collage: req.params.collageId});
        
@@ -113,7 +135,7 @@ router.get("/find/course/:courseId" ,async (req , res) =>{
 router.get("/find/:course" ,async (req , res) =>{
 
     try{
-        console.log("course route jamal ",req.params.course)
+       // console.log("course route jamal ",req.params.course)
         const Elementm =  await course.findById(req.params.course)
         console.log(Elementm)
         res.send( Elementm)
@@ -125,5 +147,22 @@ router.get("/find/:course" ,async (req , res) =>{
 
 
 })
+
+router.get("/find/courses" ,async (req , res) =>{
+
+    try{
+        console.log("course route jamal ",req.params.course)
+        const Elementm =  await course.findById()
+        console.log(Elementm)
+        res.send( Elementm)
+    
+    }
+    catch(error){
+        console.log("error in fetching ",error)
+    }
+
+
+})
+
 
 module.exports = router;

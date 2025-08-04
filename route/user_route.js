@@ -61,6 +61,46 @@ express.post("/create" ,async(req , res) => {
 
 
 
+express.get("/login" , (req, res) => {
+    res.render("../views/User/login.ejs" , {error: null});
+});
+
+
+
+
+express.post("/login" , async (req, res) => {
+ 
+    try{
+        const foundUser = await User.findOne({username:req.body.username})
+        console.log(req.body)
+        const validPassword = bcrypt.compareSync(req.body.password,foundUser.password)
+        console.log(validPassword)
+
+        if(!validPassword){
+            return res.send("Password is incorrect")
+        }  
+        // creates a session for our user once they are logged in
+        req.session.user = {
+            username: foundUser.username,
+            _id: foundUser._id
+        }
+
+        res.redirect("/")
+
+    }
+    catch(error){
+
+        console.log("Their is an error here , ", error)
+
+    }
+
+
+
+})
+
+
+
+
 
 
 

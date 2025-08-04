@@ -9,8 +9,11 @@ const studentDatabase = require("./route/student_route");
 const instructorDatabase = require("./route/instructor_route");
 const coursesDatabase = require("./route/courses_route");
 const collageDatabase = require("./route/Collage_route");
+const Home = require("./route/Home_route");
 const cors = require("cors");
 const session = require("express-session");
+const isSignedIn = require("./middleware/isSignedIn");
+const passUserToView = require("./middleware/passUsertoView");
 
 
 connectDataBase();
@@ -29,7 +32,12 @@ app.use(
     })
   );
 
+  app.use(passUserToView)
+
+  app.use("/" , Home);
+
   app.use("/signUp" , userDatabase )
+  app.use(isSignedIn)
   app.use("/student" , studentDatabase )
   app.use("/instructor" , instructorDatabase)
   app.use("/course" , coursesDatabase)

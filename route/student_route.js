@@ -5,18 +5,11 @@ const coursee = require("../model/Courses")
 const collagee = require("../model/Collage")
 const Users = require("..//model/User");
 const Collage = require("../model/Collage");
+const isSignedIn = require("../middleware/isSignedIn");
 
-router.get("/:id" , async(req ,res) => {
 
-    const allInstructor = await Instructor.find();
-    const allCourses = await coursee.find();
-    const allCollages = await collagee.find();
-    const allUsers = await Users.find()
-   // console.log("it)
-   console.log("Hey their")
-    res.render("Student/create.ejs" , {allInstructor : allInstructor , allCourses: allCourses , allCollages: allCollages , id: req.params.id , allUsers : allUsers});
 
-});
+
 
 router.post("/" , async (req ,res) => {
 
@@ -118,65 +111,80 @@ router.get("/find/Student/:collageId" ,async (req , res) =>{
 
 })
 
-
-module.exports = router;
-
-/*
+router.get("/Profile" , async(req ,res) => {
 
 
-const CollageScheme = new Schema({
+    const allInstructor = await Instructor.find();
+    const allCourses = await coursee.find();
+    const allCollages = await collagee.find();
+    const allUsers = await Users.find()
+    const allStudent = await Student.find({user:req.session.user._id})
+
+    const allStudentAvailable = await Student.find();
+    console.log(allStudent)
+
+
+    res.render("../views/Profile.ejs" , {allInstructor : allInstructor , allCourses: allCourses , allCollages: allCollages , allStudent: allStudent , allUsers : allUsers , allStudentAvailable:allStudentAvailable})
+
+
+
+
+   
+})
+
+router.get("/Profile/:id" , async(req, res) => {
+
+        try{ 
+
+            const deletion = await Student.findByIdAndDelete(req.params.id)
+            
+        }catch(error){console.log("Their is an error in deleting , " ,error)}
+
+})
+
+
+// router.get("/Profile/update/:id" , async(req, res) => {
+
+//     try{ 
     
-    name: {
-        type: String,
-        requird: [true , "Please give me your name"]
-    },
+//         const deletion = await Student.findByIdAndUpdate(req.params.id , {
+                
+//         })
+        
+//     }catch(error){console.log("Their is an error in deleting , " ,error)}
 
-     Student: {
-        type: Schema.Types.ObjectId ,
-        ref:"Student"
-     },
-     Instructor: {
-        type: Schema.Types.ObjectId ,
-        ref:"Instructor"
-     },
-     course:[{
-        type: Schema.Types.ObjectId ,
-        ref:"Course"
-     }]
+// })
+
+
+router.get("/:id" ,isSignedIn, async(req ,res) => { 
+
+    const allInstructor = await Instructor.find();
+    const allCourses = await coursee.find();
+    const allCollages = await collagee.find();
+    const allUsers = await Users.find()
+   // console.log("it)
+   console.log("Hey their")
+    res.render("Student/create.ejs" , {allInstructor : allInstructor , allCourses: allCourses , allCollages: allCollages , id: req.params.id , allUsers : allUsers});
 
 });
 
 
-  name: {
-        type: String,
-        requird: [true , "Please give me your name"]
-    },
-    userName:{
-        type: String,
-        required: [true , "Please give a username"]
-    },
-     collage: [{
-         type: Schema.Types.ObjectId ,
-        ref:"Collage"
-     }],
-     Instructor: {
-        type: Schema.Types.ObjectId ,
-        ref:"Instructor"
-     },
-     user : {
-        type: Schema.Types.ObjectId ,
-        ref:"User"
-     },
-     course:[{
-        type: Schema.Types.ObjectId ,
-        ref:"Course"
-     }]
+
+
+
+router.get("/" ,isSignedIn, async(req ,res) => {
+
+    const allInstructor = await Instructor.find();
+    const allCourses = await coursee.find();
+    const allCollages = await collagee.find();
+    const allUsers = await Users.find()
+   // console.log("it)
+   console.log("Hey their")
+    res.render("Student/create.ejs" , {allInstructor : allInstructor , allCourses: allCourses , allCollages: allCollages , id: req.params.id , allUsers : allUsers});
+
+});
 
 
 
 
-
-
-
-
-*/
+module.exports = router;
