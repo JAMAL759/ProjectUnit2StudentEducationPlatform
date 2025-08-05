@@ -3,7 +3,7 @@ const  Student = require("../model/Student");
 const Instructor = require("../model/Instructor");
 const coursee = require("../model/Courses");
 const collagee = require("../model/Collage");
-
+const User = require("../model/User");
 
 express.get("/:id" , async(req ,res) => {
 
@@ -14,13 +14,19 @@ express.get("/:id" , async(req ,res) => {
 
 });
 
-express.post("/:idzzz" , async (req ,res) => {
+express.post("/:id" , async (req ,res) => {
     console.log("This is the req.params " , req.params.id)
     console.log("This is the req.body in Student " , req.body)
+    const UserID = await User.find({username: req.params.id});
+    console.log("This is the user ID = " , UserID)
 
         const{name , userName , collage  , Student , user , course  } = req.body
 try{
-    req.body.user = req.params.id
+
+
+
+
+    req.body.user = UserID._id
  
     const ref = await Instructor.create(req.body);
     const InstructorId  = ref._id
@@ -40,9 +46,14 @@ try{
         await coursee.findByIdAndUpdate(course,{ 
          $push: {   Instructor: InstructorId }
      })} catch(error){console.log("Their is an error updating courses ," , error)}
+
+
+     
+     
      
 
     console.log("Sucessfully posted in Instructor")
+    
 }catch(error){console.log("Their is an error posting Instructor " , error)};
 
 })
@@ -54,7 +65,7 @@ express.get("/find/collage/:collageId" ,async (req , res) =>{
     try{
       //  console.log("course route jamal ",req.params.course)
  
-        const ElementInstructor  = await Instructor.find({collage: req.params.collageId});
+        const ElementInstructor  = await coursee.find({collage: req.params.collageId});
        
         console.log(ElementInstructor)
 
