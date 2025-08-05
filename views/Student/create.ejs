@@ -6,22 +6,78 @@
     <title>Document</title>
 
 
+<style>
+.labelName{
 
+    display: flex;
+
+    justify-content:  center;
+   width: 300px;
+   height: 40px;
+   background-color: rgb(192, 219, 210);
+   border-radius: 10px;
+   font-size:xx-large;
+
+}
+
+
+.name{
+
+
+display: flex;
+
+justify-content:  center;
+width: 500px;
+height: 40px;
+background-color: rgb(5, 5, 5);
+border-radius: 10px;
+font-size: medium;
+
+color: whitesmoke;
+margin-left: 2%;
+
+
+
+
+}
+
+.Namediv{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    flex-shrink: 2;
+    justify-content: center;
+}
+
+
+
+
+</style>
 </head>
 
 
 <body>
     <h1> This is the Student make page</h1>
 
+
     <form action="/student" method="post">
-        <label for="name"> Name: </label>
-        <input name="name" id="name" type="text">
 
-        <label for="userName"> userName: </label>
-        <input name="userName" id="userName" type="text" >
+        <div class="Namediv"> 
+        <label for="name" class="labelName"> Name: </label>
+        <input name="name" id="name" type="text"  class="name">
+    </div>
 
-        <label for="collage"> </label>
-        <select   name="collage" id="collage" >
+    <div class="Namediv">
+
+        <label for="userName" class="labelName"> userName: </label>
+        <input name="userName" id="userName" type="text" class="name">
+
+    </div>
+
+    <div class="Namediv">
+        <label for="collage" id="collageName" class="labelName" > Collage</label>
+        <select   name="collage" id="collage" class="name">
             <option value="null"></option>
             <% allCollages.forEach( (obj)=> { %>
 
@@ -29,23 +85,33 @@
            
                     <% }) %>
         </select>
+        </div>
+        <div class="Namediv">
 
-        <label for="doctor"> doctor: </label>
-        <select multiple name="doctor" id="doctor"> 
+        <label for="doctor" class="labelName" > doctor: </label>
+        <select multiple name="doctor" id="doctor"  class="name"> 
            
         </select>
+
+        </div>
 
        
         <% allUsers.forEach( (obj) => { if (id == obj.username) { %>
         <input name="user" id="user" type="text" value= <%= obj.id %> hidden >
             <% } }) %>
 
-        <label for="course"> Choose your courses: </label>
-        <select name="course" id="course" multiple> 
+
+            <div class="Namediv">
+        <label for="course" class="labelName"> Choose your courses: </label>
+        <select name="course" id="course" multiple class="name"> 
             
         </select>
+            </div>
 
-        <button> Submit</button>
+            <div class="Namediv">
+        <button class="labelName" > Submit</button>
+
+        </div>
 
     </form>
 
