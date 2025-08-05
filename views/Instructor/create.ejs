@@ -4,16 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+<style>
+
+
+
+.labelName{
+
+display: flex;
+
+justify-content:  center;
+width: 300px;
+height: 40px;
+background-color: rgb(192, 219, 210);
+border-radius: 10px;
+font-size:xx-large;
+
+}
+
+
+.name{
+
+
+display: flex;
+
+justify-content:  center;
+width: 500px;
+height: 40px;
+background-color: rgb(5, 5, 5);
+border-radius: 10px;
+font-size: medium;
+
+color: whitesmoke;
+margin-left: 2%;
+
+
+
+
+}
+
+.Namediv{
+display: flex;
+flex-direction: row;
+margin-top: 2%;
+margin-bottom: 1%;
+flex-shrink: 2;
+justify-content: center;
+}
+
+
+
+
+
+
+</style>
+
+
+
+    
 </head>
 <body>
     <h1> This is the instructor make page</h1>
 
     <form  method="post">
+        
+
+
+    <div class="Namediv">
+
         <label for="name"> Name: </label>
         <input name="name" id="name" type="text">
 
+        </div>
+
+
+
+
+    <div class="Namediv">
+
+
         <label for="userName"> UserName: </label>
         <input name="userName" id="userName" type="text" >
+
+        </div>
+
+
+    <div class="Namediv">
 
         <label for="collage"> </label>
         <select  multiple="multiple"   name="collage" id="collage" >
@@ -23,22 +99,35 @@
                 <option value="<%= obj.id %>"> <%= obj.name %></option>
                     <% }) %>
         </select>
+</div>
+
+
+<div class="Namediv">
 
         <label  for="Student"> Student: </label>
         <select  multiple="multiple" name="Student" id="Student"> 
            
         </select>
 
-       
+       </div>
         <input name="user" id="user" type="text" hidden >
 
+
+        <div class="Namediv">
 
         <label for="course"> Choose your courses: </label>
         <select  multiple="multiple" name="course" id="course"> 
            
         </select>
 
+        </div>
+
+
+    <div class="Namediv">
+
+
         <button> Submit </button>
+        </div>
     </form>
 
 
