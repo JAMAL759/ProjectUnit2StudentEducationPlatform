@@ -48,7 +48,13 @@ try{
      })} catch(error){console.log("Their is an error updating courses ," , error)}
 
 
-     
+
+     try{
+        await collagee.findByIdAndUpdate(collage , {
+            $push: {Instructor: InstructorId}
+        })
+        console.log("Managed to push the instructor in the collage")
+     } catch(error){ console.log("Their is an error updaeting the collage courses section " , error)}
      
      
 
